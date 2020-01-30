@@ -17,14 +17,20 @@
  * Define Global Variables
  * 
 */
-
+let section = document.querySelectorAll('section');
 
 /**
  * End Global Variables
  * Start Helper Functions
  * 
 */
-
+// function active() {
+//     let activeLi = document.getElementsByClassName('your-active-class');
+//     if (activeLi.length > 0) {
+//         activeLi[0].className = activeLi[0].className.replace('your-active-class', '');
+//     }
+//     this.className += 'your-active-list';
+// }
 
 
 /**
@@ -35,6 +41,16 @@
 
 // build the nav
 
+function handleNavItemClick(e) {
+    let current = document.querySelector('.your-active-class');
+    current.classList.remove('your-active-class');
+    let dataId = e.target.getAttribute('data-id');
+    let active = document.getElementById(dataId);
+    active.classList.add('your-active-class');
+    let top = active.offsetTop;
+    window.scrollTo({ top, behavior: 'smooth'})
+}
+
 function navElements() {
     const nav = document.getElementById('navbar__list');
     const sections = document.querySelectorAll('section');
@@ -43,7 +59,10 @@ function navElements() {
         const navItem = document.createElement('li');
         let section = sections[i];
         let sectionTitle = section.getElementsByTagName('h2')[0].innerHTML;
-        navItem.innerHTML = `<a href="#${section.id}" class="menu__link">${sectionTitle}</a>`;
+        // let sectionClass = section.classList.add('identifier');
+        navItem.style.cursor = "pointer";
+        navItem.addEventListener('click', handleNavItemClick)
+        navItem.innerHTML = `<div data-id=${section.id} class="menu__link">${sectionTitle}</div>`;
         nav.appendChild(navItem);
     }
 }
@@ -54,6 +73,9 @@ navElements();
 
 // Add class 'active' to section when near top of viewport
 
+// for (i = 0; i < section.length; i++) {
+//     section[i].addEventListener("click", active())
+// }
 
 // Scroll to anchor ID using scrollTO event
 
