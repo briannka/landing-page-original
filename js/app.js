@@ -12,34 +12,11 @@
  * JS Standard: ESlint
  * 
 */
-
-/**
- * Define Global Variables
- * 
-*/
-let section = document.querySelectorAll('section');
-
-/**
- * End Global Variables
- * Start Helper Functions
- * 
-*/
-// function active() {
-//     let activeLi = document.getElementsByClassName('your-active-class');
-//     if (activeLi.length > 0) {
-//         activeLi[0].className = activeLi[0].className.replace('your-active-class', '');
-//     }
-//     this.className += 'your-active-list';
-// }
+ // Begin Main Functions
 
 
-/**
- * End Helper Functions
- * Begin Main Functions
- * 
-*/
 
-// build the nav
+// response upon click
 
 function handleNavItemClick(e) {
     let current = document.querySelector('.your-active-class');
@@ -50,6 +27,8 @@ function handleNavItemClick(e) {
     let top = active.offsetTop;
     window.scrollTo({ top, behavior: 'smooth'})
 }
+
+// build the nav
 
 function navElements() {
     const nav = document.getElementById('navbar__list');
@@ -68,26 +47,4 @@ function navElements() {
 }
 navElements();
 
-
-
-
-// Add class 'active' to section when near top of viewport
-
-// for (i = 0; i < section.length; i++) {
-//     section[i].addEventListener("click", active())
-// }
-
-// Scroll to anchor ID using scrollTO event
-
-
-/**
- * End Main Functions
- * Begin Events
- * 
-*/
-
-// Build menu 
-
-// Scroll to section on link click
-
-// Set sections as active
+//End of Main Functions
