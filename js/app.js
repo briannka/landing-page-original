@@ -19,11 +19,8 @@
 // response upon click
 
 function handleNavItemClick(e) {
-    let current = document.querySelector('.your-active-class');
-    current.classList.remove('your-active-class');
     let dataId = e.target.getAttribute('data-id');
     let active = document.getElementById(dataId);
-    active.classList.add('your-active-class');
     let top = active.offsetTop;
     window.scrollTo({ top, behavior: 'smooth'})
 }
@@ -34,17 +31,45 @@ function navElements() {
     const nav = document.getElementById('navbar__list');
     const sections = document.querySelectorAll('section');
 
-    for (i = 0; i < sections.length; i++) {
+    for (let i = 0; i < sections.length; i++) {
         const navItem = document.createElement('li');
         let section = sections[i];
         let sectionTitle = section.getElementsByTagName('h2')[0].innerHTML;
         // let sectionClass = section.classList.add('identifier');
         navItem.style.cursor = "pointer";
-        navItem.addEventListener('click', handleNavItemClick)
+        navItem.addEventListener('click', handleNavItemClick);
         navItem.innerHTML = `<div data-id=${section.id} class="menu__link">${sectionTitle}</div>`;
         nav.appendChild(navItem);
     }
 }
 navElements();
 
+
+function addActive(id) {
+    console.log('#' + id);
+    let current = document.querySelector('.your-active-class');
+    current.classList.remove('your-active-class');
+    let item = document.querySelector(`#${id}`);
+    item.classList.add('your-active-class');
+}
+
+//scroll response
+
+function onScroll() {
+    const sections = document.querySelectorAll('section');
+
+    console.log('scrolling...');
+
+    for (let i = 0; i < sections.length; i++) {
+        let section = sections[i];
+        let area = section.getBoundingClientRect();
+
+        if (area.bottom >= 0 + 52) {
+            addActive(section.id);
+            break;
+        }
+    }
+}
+
+document.addEventListener('scroll', onScroll);
 //End of Main Functions
