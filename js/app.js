@@ -14,6 +14,8 @@
 */
  // Begin Main Functions
 
+//active button
+
 
 
 // response upon click
@@ -45,10 +47,18 @@ navElements();
 
 
 function addActive(id) {
-    let current = document.querySelector('.your-active-class');
-    current.classList.remove('your-active-class');
-    let item = document.querySelector(`#${id}`);
-    item.classList.add('your-active-class');
+    let previousItem = document.querySelector('.your-active-class');
+    previousItem.classList.remove('your-active-class');
+    let current = document.querySelector(`#${id}`);
+    current.classList.add('your-active-class');
+
+    let previousBtn = document.querySelector('.active');
+    if (previousBtn) {
+        previousBtn.classList.remove('active');
+    }
+    let navBtn = document.querySelector(`[data-id = ${id}]`);
+    navBtn.classList.add('active');
+
 }
 
 //scroll response
