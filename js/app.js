@@ -35,7 +35,6 @@ function navElements() {
         const navItem = document.createElement('li');
         let section = sections[i];
         let sectionTitle = section.getElementsByTagName('h2')[0].innerHTML;
-        // let sectionClass = section.classList.add('identifier');
         navItem.style.cursor = "pointer";
         navItem.addEventListener('click', handleNavItemClick);
         navItem.innerHTML = `<div data-id=${section.id} class="menu__link">${sectionTitle}</div>`;
@@ -46,7 +45,6 @@ navElements();
 
 
 function addActive(id) {
-    console.log('#' + id);
     let current = document.querySelector('.your-active-class');
     current.classList.remove('your-active-class');
     let item = document.querySelector(`#${id}`);
@@ -58,13 +56,13 @@ function addActive(id) {
 function onScroll() {
     const sections = document.querySelectorAll('section');
 
-    console.log('scrolling...');
-
     for (let i = 0; i < sections.length; i++) {
         let section = sections[i];
         let area = section.getBoundingClientRect();
 
-        if (area.bottom >= 0 + 52) {
+        const navBar = document.getElementById('navbar__list');
+        let offset = navBar.getBoundingClientRect().height;
+        if (area.bottom >= 0 + offset) {
             addActive(section.id);
             break;
         }
